@@ -16,7 +16,7 @@
 |---------------| --------------
 |Code name | _**foood**_ |
 |Project title| Exploring the Relationship Between COVID-19 and Dietary Health |
-|Authors |<ul><li>Brendan Keane `bwkeane@uw.edu` </li><li>Group Member 2 `email2@domain.com`</li><li>Group Member 3 `email3@domain.com`</li><li>Group Member 4 `email4@domain.com`</li><li>Group Member 5 `email5@domain.com` |
+|Authors |<ul><li>Brendan Keane `bwkeane@uw.edu` </li><li>Sean Lim `seanxlim@uw.edu`</li><li>Jessy Irvine `jri11@uw.edu`</li><li>Jerry Zhang `jzhang43@uw.edu`</li><li>Yonas Mekonnen `yonasgm@uw.edu` |
 |Affiliation |  INFO-201: Technical Foundations of Informatics - The Information School - University of Washington |
 |Date | February 4th, 2022|
 |Abstract | This project uses global food and COVID-19 data to explore the relationship between diet and COVID-19 mortality. Correlations between these two factors could indicate that **(1)** healthy diets improve COVID-19 outcomes, **(2)** countries with enough food are better equipped to combat COVID, or **(3)** a combination of both.|
