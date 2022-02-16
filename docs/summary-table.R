@@ -1,19 +1,24 @@
 # Date: February 16th, 2022
 # Author: Brendan Keane
-# Purpose: Summarize information from the COVID-19 Healthy Diet Dataset
+# Purpose: Summarize information from COVID-19 and world food data
+
+## Importing Data----------------
 
 # Libraries used
 library("dplyr")
 
-# Loading global covid data
+# Loading global COVID data
 global_covid_data_origional <- read.csv("./data/jhu-covid19-2022-02-14.txt")
 
 # Loading global food supply in kg
 global_food_supply_kg_origional <- read.csv("./data/Food_Supply_Quantity_kg_Data.csv")
 
-# Grouping information by country, removing unnecessary columns
+## Grouping and Summarizing ----
+### Global COVID Data ------
 global_covid_data <- global_covid_data_origional %>%
+  # Group by country and filter for most recent information
   group_by(Country_Region) %>%
+  filter(Last_Update == max(Last_Update, na.rm = TRUE)) %>%
   
   # Creating new columns that represent sums and averages for countries
   mutate(country_cases = sum(Confirmed, na.rm = TRUE)) %>%  # Sum of cases
@@ -31,14 +36,59 @@ global_covid_data <- global_covid_data_origional %>%
   select(Country_Region, country_lat, country_long, country_cases, 
          country_deaths, country_incident_rate, country_fatality_ratio, 
          Last_Update) %>%
-  
-  # Eliminate any duplicates
+ 
+  # Eliminating any duplicate information
   unique()
 
+### Global Food Data -----
 # Altering the food data (measured as percentage of diet by mass) to be compatible
-# with global COVID-19 dataframe
+# with global COVID-19 data frame
 global_food_data_kg <- global_food_supply_kg_origional %>%
   select(-Confirmed, -Deaths, -Active, -Recovered, -Unit..all.except.Population.)
 
+## Cleaning Data: Matching Country Names ----------
+# Before computing summary statistics, we need to adjust naming conventions
+# to match the food data
 
-global_food_and_covid <- full_join(global_covid_data, global_food_data_kg, by = c("Country_Region" = "Country"))
+# Laos / Lao People's Democratic Republic
+global_food_data_kg[global_food_data_kg$Country == 
+                      "Lao People's Democratic Republic", "Country"] <- "Laos"
+
+# Congo / Congo (Brazzaville) / Congo (Kinshasa)
+global_covid_data[global_covid_data$Country_Region == "Congo (Brazzaville)"
+                  , "Country_Region"] <- "Congo"
+global_covid_data[global_covid_data$Country_Region == "Congo (Kinshasa)"
+                  , "Country_Region"] <- "Congo"
+
+# Iran / Iran (Islamic Republic of)
+global_food_data_kg[global_food_data_kg$Country == 
+                      "Iran (Islamic Republic of)", "Country"] <- "Iran"
+
+# Myanmar / Burma
+global_covid_data[global_covid_data$Country_Region == "Burma"
+                  , "Country_Region"] <- "Myanmar"
+
+# Moldova / Republic of Moldova
+global_food_data_kg[global_food_data_kg$Country == 
+                      "Republic of Moldova", "Country"] <- "Moldova"
+
+# Russia / Russian Federation
+global_food_data_kg[global_food_data_kg$Country == 
+                      "Russian Federation", "Country"] <- "Russia"
+
+# Tanzania / United Republic of Tanzania
+global_food_data_kg[global_food_data_kg$Country == 
+                      "United Republic of Tanzania", "Country"] <- "Tanzania"
+
+# United States of America / US
+global_covid_data[global_covid_data$Country_Region == "US"
+                  , "Country_Region"] <- "United States of America"
+
+# Venezuela / Venezuela (Bolivarian Republic of)
+global_food_data_kg[global_food_data_kg$Country == 
+                      "Venezuela (Bolivarian Republic of)", "Country"] <- "Venezuela"
+
+## Combining both data frames -----------
+# Combining both of the data frames
+global_food_and_covid <- inner_join(global_covid_data, global_food_data_kg, 
+                                   by = c("Country_Region" = "Country"))
