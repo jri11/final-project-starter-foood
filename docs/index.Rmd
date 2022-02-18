@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(root.dir = '/tmp')
 ```
 
 ## What is this file for?
@@ -40,15 +40,18 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
-summary(cars)
+
 ```
 
 ## Including Plots
+**Chart-2:**
+***Purpose:***Considering that the nutritional ratio will have a direct impact on the COVID situation from the perspective of immunity, the purpose of making this graph in the early stage is to count the number of COVID cases and deaths around the world and the ratio between them, so as to compare it with each country. Food nutrient ratios are linked to analyze the impact of nutrition on COVID.
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+***observations and insights:***According to the scatter plot, in general, almost all countries have a COVID mortality rate below 10%. For some countries with extremely high mortality, such as Belgium(58% death ratio), according to the dataset of Food, the proportion of meat and fruit is far lower than that of countries with low mortality, so it seems that the reason behind this may be because insufficient intake of protein and vitamins leads to decreased immunity.
+```{r, warning=FALSE, message=FALSE,echo=FALSE}
+source("chart-2.R")
+case_deaths
 ```
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
