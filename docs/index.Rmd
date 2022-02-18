@@ -78,3 +78,20 @@ Observable in the map, there is a clear relationship between percentages of suga
 ##Insight##
 With this observation, we can see that diets with a higher rate in sugar consumption, can effect a nation/persons susceptibility to Covid-19 exposure and death. 
 
+##Chart 3 code
+```{r}
+food_global_data <- Food_Supply_Quantity_kg_Data
+
+obesity_deaths <- food_global_data %>%
+  select(Obesity, Deaths)
+
+ggplot(obesity_deaths, aes(x=Obesity, fill = Deaths)) + geom_histogram()
+```
+## Chart Purpose## 
+This histogram explores the relationship between the percentage of global obesity data and the percentages of deaths from COVID-19. Additionally, this chart visualizes the ratio of death percentages compared to the percentage of global obesity. 
+
+##Observation## 
+While analyzing the histogram, there seems to be distinct relationship between the obesity data and the COVID-19 related deaths. The increase in obesity appears to affect the increase in COVID-19 death data. 
+
+##Insight##
+From these observations, we can see that the higher the obesity data is within a certain region or country, can increase how susceptible a individual is to COVID-19 contraction and death. 
