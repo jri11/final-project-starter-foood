@@ -61,7 +61,6 @@ Global_Food_Data %>%
   ggplot(., aes(x = Sugar...Sweeteners, fill = Deaths)) +
   geom_density()
 ```
-
 ## Chart Purpose## 
 This density map explores the relationship between global sugar/ sweetener consumption and global Covid-19 deaths. This chart visualizes the ratio of death percentages pertaining to the percentage of sugar consumption
 
@@ -70,14 +69,18 @@ Observable in the map, there is a clear relationship between percentages of suga
 
 ##Insight##
 With this observation, we can see that diets with a higher rate in sugar consumption, can effect a nation/persons susceptibility to Covid-19 exposure and death. 
-**Chart-2:**
-***Purpose:***Considering that the nutritional ratio will have a direct impact on the COVID situation from the perspective of immunity, the purpose of making this graph in the early stage is to count the number of COVID cases and deaths around the world and the ratio between them, so as to compare it with each country. Food nutrient ratios are linked to analyze the impact of nutrition on COVID.
 
-***observations and insights:***According to the scatter plot, in general, almost all countries have a COVID mortality rate below 10%. For some countries with extremely high mortality, such as Belgium(58% death ratio), according to the dataset of Food, the proportion of meat and fruit is far lower than that of countries with low mortality, so it seems that the reason behind this may be because insufficient intake of protein and vitamins leads to decreased immunity.
+
+##Chart 2 code 
 ```{r, warning=FALSE, message=FALSE,echo=FALSE}
 source("chart-2.R")
 case_deaths
 ```
+## Chart Purpose## 
+Considering that the nutritional ratio will have a direct impact on the COVID situation from the perspective of immunity, the purpose of making this graph in the early stage is to count the number of COVID cases and deaths around the world and the ratio between them, so as to compare it with each country. Food nutrient ratios are linked to analyze the impact of nutrition on COVID.
+##Observation and Insight## 
+According to the scatter plot, in general, almost all countries have a COVID mortality rate below 10%. For some countries with extremely high mortality, such as Belgium(58% death ratio), according to the dataset of Food, the proportion of meat and fruit is far lower than that of countries with low mortality, so it seems that the reason behind this may be because insufficient intake of protein and vitamins leads to decreased immunity.
+
 
 ##Chart 3 code
 ```{r}
