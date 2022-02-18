@@ -1,6 +1,6 @@
 ---
 title: "Your Project Title"
-author: "project team members"
+author: "Brendan Keane, Sean Lim, Jessy Irvine, Jerry Zhang, Yonas Mekonnen"
 date: "1/22/2022"
 output: html_document
 ---
@@ -52,3 +52,29 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+##Chart 1 code 
+```{r}
+Global_Food_Data <- read.csv(".\\final-project-starter-foood\\data\\Food_Supply_Quantity_kg_Data.csv")
+
+Global_Food_Data <- Food_Supply_Quantity_kg_Data %>%
+group_by(Sugar...Sweeteners) %>%
+  filter(Last_Update == max(Last_Update, na.rm = TRUE)) %>%
+  
+Global_Food_Data %>%
+  ggplot(., aes(x = Sugar...Sweeteners, fill = Deaths)) +
+  geom_density()
+```
+
+## Chart Purpose## 
+This density map explores the relationship between global sugar/ sweetener consumption and global Covid-19 deaths. This chart visualizes the ratio of death percentages pertaining to the percentage of sugar consumption
+
+##Observation## 
+Observable in the map, there is a clear relationship between percentages of sugar consumption and death percentages.The map exemplifies this by showing that the increase of sweeteners effects the increase in Covid-19 related deaths. 
+
+##Insight##
+With this observation, we can see that diets with a higher rate in sugar consumption, can effect a nation/persons susceptibility to Covid-19 exposure and death. 
+

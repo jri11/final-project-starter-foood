@@ -13,7 +13,7 @@ group_by(Sugar...Sweeteners) %>%
   filter(Last_Update == max(Last_Update, na.rm = TRUE)) %>%
   
 #creating a density map exemplifying the correlation between the percentage 
-#of global sugar consumption and the percentages of deaths from COVID 
+#cd ~of global sugar consumption and the percentages of deaths from COVID 
 Global_Food_Data %>%
   ggplot(., aes(x = Sugar...Sweeteners, fill = Deaths)) +
   geom_density()
