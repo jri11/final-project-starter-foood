@@ -1,7 +1,7 @@
 ---
-title: "Your Project Title"
+title: "foood"
 author: "Brendan Keane, Sean Lim, Jessy Irvine, Jerry Zhang, Yonas Mekonnen"
-date: "1/22/2022"
+date: "2/18/2022"
 output: html_document
 ---
 
@@ -9,80 +9,88 @@ output: html_document
 knitr::opts_chunk$set(root.dir = '/tmp')
 ```
 
-## What is this file for?
-
-* This file will eventually become your project report for **P02: Exploratory Data Analysis**. Specifically, you will write rmarkdown to report your exploratory data analysis.
-
-* Please see Canvas for more details.
-
-## ACCESSING THE /source DIRECTORY
-### Example 1: Source some code and run a function
-```{r}
-# Example 1: Note relative path, which can be read: Up one
-# directory(..), down into source (/source), and 
-# then "source" an R file (data_access.R)
-source("../source/data_access.R")
-data_access_test()
-```
-
-### Example 2: Initialize a variable and then use it
-```{r}
-# Example 1: This function was "sourced" above
-msg <- data_access_test(" Morgan!")
-```
-
-> `r msg` Hope you have a good day!! 
-
-## ABOUT THIS FILE: 
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-
-```
-
-## Including Plots
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+|Element | Brief Description|
+|---------------| --------------
+|Code name | _**foood**_ |
+|Project title| Exploring the Relationship Between COVID-19 and Dietary Health |
+|Authors |<ul><li>Brendan Keane `bwkeane@uw.edu` </li><li>Sean Lim `seanxlim@uw.edu`</li><li>Jessy Irvine `jri11@uw.edu`</li><li>Jerry Zhang `jzhang43@uw.edu`</li><li>Yonas Mekonnen `yonasgm@uw.edu` |
+|Affiliation |  INFO-201: Technical Foundations of Informatics - The Information School - University of Washington |
+|Date | February 18th, 2022|
+|Abstract | This project uses global food and COVID-19 data to explore the relationship between diet and COVID-19 mortality. Correlations between these two factors could indicate that **(1)** healthy diets improve COVID-19 outcomes, **(2)** countries with enough food are better equipped to combat COVID, or **(3)** a combination of both.|
+|Keywords | dietary health, COVID-19, public health, food |
+|1.0 Introduction | Over the last two years, the COVID-19 pandemic has swept across world. During this time, scientists, politicians, and world leaders have been trying to find a way to return to normal. By finding correlations between dietary data and COVID-19 statistics, we hope to gain valuable information on how diet effects COVID-19 mortality. More specifically, we will explore correlations between COVID-19 mortality and nations macronutrient consumption through the [_COVID-19 Healthy Diet Dataset_](https://www.kaggle.com/mpwolke/food-supply-kcal/data). By understanding these data, we can better understand dietary health's relationship with our immune systems.  |
+|2.0 Design Situation | <h4>Framing the topic</h4> Before vaccines were widely accessible in the United States, scientists looked to diet as a method to combat COVID-19 [(Chesnut, MacDonald, & Wambier, 2021)](https://www.sciencedirect.com/science/article/pii/S0306987721000207?casa_token=pHaJP3Rf7TYAAAAA:Guf7-_3zL_U161-6sS7JtyocKkzQcJRU8vZvH4lfdnK84mtpHuXX5PzwT0cBpKQc2lsQTel_ms4). Researchers used COVID-19 mortality in conjunction with food data to find a correlation between country’s diet and COVID-19 mortality rate. While much of this research suggests that “a plant based rich fiber diet… appears to be advantageous” [(Rishi et al., 2020)](https://link.springer.com/article/10.1007/s12088-020-00908-0) some researchers argue that countries mortality data cannot be compared because of various collection biases [(Bousquet et al., 2020)](https://onlinelibrary.wiley.com/doi/full/10.1186/s13601-020-00323-0). While these data collection biases are of concern, “obesity, a risk factor of mortality in COVID-19, suggests the importance of nutrition” [(Bousquet et al., 2020)](https://onlinelibrary.wiley.com/doi/full/10.1186/s13601-020-00323-0). For this reason, we will investigate diet and COVID-19 by isolating specific food habits and comparing them with COVID-19 mortality. <h4>Human values</h4> These data are connected to international life and health. Every number in this dataset tells a story of public health, agriculture, supply chains, and the industrialization of food. Although each community has a unique cultural relationship with food, all humans require proper nutrition to meet their health needs. When food is commodified, these health needs are compromised in favor of cost, convenience, and accessibility. We acknowledge that dietary choice is a privilege and that the findings of this research are a reflection of systemic issues with dietary health. <h4>Stakeholders</h4>This project consists of governments, farmers, and supply chain managers as direct stakeholders as their actions directly impact the quantity and quality of food distributed to people. Governments are motivated to support population health in order to maintain societal function. Farms and supply chain managers are motivated to allocate food throughout their respective areas. Additionally healthcare workers, schools, high-risk individuals, and all humans are indirect stakeholders as their health and safety are impacted by the direct stakeholders. <h4>Benefits and harms</h4> Analyzing COVID-19 data at a global scale is challenging as “most diseases exhibit large geographical variations which frequently remain unexplained despite abundant research” [(Bousquet et al., 2020)](https://onlinelibrary.wiley.com/doi/full/10.1186/s13601-020-00323-0). Reactive adoption of diet is not uncommon and “such diets in the long term are unsustainable and can bring adverse side effects to health” [(Khawandanah & Tewfik, 2016)](https://www.inmed.us/wp-content/uploads/4-Fad-Diets-Lifestyle-Promises-and-Health-Challenges.-Journal-of-Food-Research-2016.pdf). However, diet-based issues like obesity have been acknowledged as a “public health threat, with the government failing to reverse this growing trend” [(Khawandanah & Tewfik, 2016)](https://www.inmed.us/wp-content/uploads/4-Fad-Diets-Lifestyle-Promises-and-Health-Challenges.-Journal-of-Food-Research-2016.pdf). Governments, farmers, supply chain managers, and concerned citizens should use this research to structure and support food initiatives that improve population health. |
+|3.0 Research questions |  </li><li>Is there a relationship between diet and COVID-19 mortality?</li><li>Does a conventionally healthy diet (low sugar, low sodium, low fat, high produce) strengthen the immune system, reducing COVID-19 mortality? </li><li>Does a high quantity of processed food relate to high COVID-19 mortality?|
+|4.0 The Dataset | This data set, Food Supply Kcal [(Marila Prata, 2020)] (https://www.kaggle.com/mpwolke/food-supply-kcal/data), represents the global population affected by COVID-19. With this, the data set also accounts for the food supply, nutrition values, obesity percentages, malnourishment percentages, and food habits of the countries represented. Among these broad categories the data set exhibits, variables such as COVID-19 deaths, active cases, and recovery cases are also analyzed. Having these variables allows the correlation between global food habits, and global COVID-19 cases more easily understandable, and also puts the correlation into perspective for the audience of the data. The set excludes the variables race and gender. While excluding these do not change the validity of the data, nor do they compromise the purpose, adding variables such as race and gender, could illustrate any disproportionate infection rates based on these two factors, and if they are affected by different diets. This could also show any commonalities between men’s and women’s diets and which gender tends to have a higher infection rate. The data was amassed by Kaggle user Marila Prata, who collected information from sources like, the Food and Agriculture Organization of The United Nations (http://www.fao.org/faostat/en/#home) , the Population Reference Bureau (https://www.prb.org/) , the Johns Hopkins Center for Systems Science and Engineering (https://coronavirus.jhu.edu/map.html) , and the USDA center for Nutrition (https://www.choosemyplate.gov/) . The data was originally collected in the beginning of the COVID-19 pandemic and has been updated since, yet ceased updates in April of 2020. Collecting this data was an attempt at answering the question: what non-pharmaceutical interventions could the population make in order to stop the spread of COVID-19? No funding was involved to collect the data, as the majority of the information is publicly available. Alternatively, those who could benefit, or financially benefit from a data set of this nature would be direct stakeholders such as large healthcare organizations and the government, specifically food and agricultural divisions. The validity of this data is strong. Many of the resources cited come from official United States government websites, and a reputable source, John Hopkins. Besides COVID-19 information collected from Johns Hopkins, there was no data included in the set from a source outside of official, public information. This makes the data easier to trust as it is assumed information that originates from the United States government is honest, and not exclusionary. This data was obtained from Kaggle, an online platform used to publish and find datasets. The source of the data is credited as kaggle, and the aforementioned sources are factual and verifiable. |
+|5.0 Expected Implications |Answers to research questions can have a positive impact on all fronts. For **professional technologists**, the results of the research will allow them to have a more mature and comprehensive concept of nutritional research and they can adjust nutritional balance according to this concept. For **designers**, more concepts about the nutritional content of food allow them to have a more comprehensive theoretical knowledge to think about and apply in practice. Finally, for **policymakers**, the results of nutritional data will allow them to set more rules and requirements for the food industry to ensure people's health for the sake of people's health. Therefore, during COIVD-19 these actions can boost their immunity through nutritional balance so that people have a stronger body to resist the coronavirus. And during a pandemic, the issue of adequate nutritional balance is critical to combating the new coronavirus, and that's something policymakers will consider. |
+|6.0 Limitations | Possible limitations that we might need to consider include the limited time frame of this data. This data stopped being updated in April 2020, so it really only encompasses the very beginning of the Covid-19 Pandemic which makes it difficult to be certain that nourishment played the largest role in these Covid statistics. Additionally, we miss out on how nourishment played a role in the later spread of the disease as new variants emerged. Furthermore, we have to take into account the different collection biases when comparing countries' Covid-19 mortality rates. Geographical variations in the Covid-19 strains are another consideration, as the strain of Covid in America is not the same as in Europe and likely has different effects. Lastly, we have to consider how different cultures view food and how limited of a commodity it is in some nations, and how that might affect the data we are analyzing.  |
+|Acknowledgements | I'd like to appreciate our TA, professor, and my team members because it is through them that we could understand more about data.|
+|References | <ul><li>Bousquet, J., Anto, J. M., Iaccarino, G., Czarlewski, W., Haahtela, T., Anto, A., Akdis, C. A., Blain, H., Walter Canonica, G., Cardona, V., Cruz, A. A., Illario, M., Ivancevich, J. C., Jutel, M., Klimek, L., Kuna, P., Laune, D., Larenas‑Linnemann, D., Mullol, J., … Zuberbier, T. (2020). Correction to: Is Diet partly responsible for differences in covid-19 death rates between and within countries? Clinical and Translational Allergy, 10(1). https://doi.org/10.1186/s13601-020-00351-w </li><li>Chesnut, W. M., MacDonald, S., &amp; Wambier, C. G. (2021). Could diet and exercise reduce risk of COVID-19 syndemic? Medical Hypotheses, 148, 110502. https://doi.org/10.1016/j.mehy.2021.110502 </li><li> Khawandanah, J., &amp; Tewfik, I. (2016). FAD diets: Lifestyle promises and health challenges. Journal of Food Research, 5(6), 80. https://doi.org/10.5539/jfr.v5n6p80 </li><li> Rishi P;Thakur K;Vij S;Rishi L;Singh A;Kaur IP;Patel SKS;Lee JK;Kalia VC; (n.d.). Diet, gut microbiota and covid-19. Indian journal of microbiology. Retrieved February 4, 2022, from https://pubmed.ncbi.nlm.nih.gov/33012868/  |
+|Appendix A: Questions| No questions so far! Thanks for asking :smile:|
 
 
-
-
-##Chart 1 code 
+## Chart 1 code ##
 ```{r}
 Global_Food_Data <- read.csv(".\\final-project-starter-foood\\data\\Food_Supply_Quantity_kg_Data.csv")
 
 Global_Food_Data <- Food_Supply_Quantity_kg_Data %>%
 group_by(Sugar...Sweeteners) %>%
   filter(Last_Update == max(Last_Update, na.rm = TRUE)) %>%
-  
+
 Global_Food_Data %>%
   ggplot(., aes(x = Sugar...Sweeteners, fill = Deaths)) +
   geom_density()
 ```
-## Chart Purpose## 
+## Chart Purpose ##
 This density map explores the relationship between global sugar/ sweetener consumption and global Covid-19 deaths. This chart visualizes the ratio of death percentages pertaining to the percentage of sugar consumption
 
-##Observation## 
-Observable in the map, there is a clear relationship between percentages of sugar consumption and death percentages.The map exemplifies this by showing that the increase of sweeteners effects the increase in Covid-19 related deaths. 
+## Observation ##
+Observable in the map, there is a clear relationship between percentages of sugar consumption and death percentages.The map exemplifies this by showing that the increase of sweeteners effects the increase in Covid-19 related deaths.
 
-##Insight##
-With this observation, we can see that diets with a higher rate in sugar consumption, can effect a nation/persons susceptibility to Covid-19 exposure and death. 
+## Insight ##
+With this observation, we can see that diets with a higher rate in sugar consumption, can effect a nation/persons susceptibility to Covid-19 exposure and death.
 
 
-##Chart 2 code 
+## Chart 2 code ##
 ```{r, warning=FALSE, message=FALSE,echo=FALSE}
-source("chart-2.R")
-case_deaths
+food_quantity <- read.csv("./data/Food_Supply_Quantity_kg_Data.csv",stringsAsFactors = FALSE)
+Covid <- read.csv("./data/jhu-covid19-2022-02-14.txt",stringsAsFactors = FALSE)
+covid_specific <- Covid %>%
+  mutate(deathratio=Deaths/Confirmed)%>%
+  filter(
+    Confirmed>Deaths,
+    Last_Update == "2022-02-15 04:21:09"
+  )
+
+case_deaths<-ggplot(data = covid_specific) +
+  geom_point(mapping = aes(x = Confirmed, y = Deaths, color = deathratio ),position = "jitter",alpha=0.3)+
+  geom_smooth(mapping = aes(x = Confirmed, y = Deaths, color = deathratio), se = FALSE)+
+  scale_x_log10()+
+  scale_y_log10()
+
+case_deaths <- plot_ly(
+  data = covid_specific,
+  x = ~Confirmed,
+  y = ~Deaths,
+  color =~deathratio,
+  size = ~Deaths/20,
+  type="scatter"
+)
+
+case_deaths <- case_deaths %>%
+  layout(
+  title = "Cases and Deaths condition around the world(recently updated)",
+  xaxis = list(title = "The number of cases"),
+  yaxis = list(title = "The number of deaths ")
+)
 ```
-## Chart Purpose## 
+## Chart Purpose ##
 Considering that the nutritional ratio will have a direct impact on the COVID situation from the perspective of immunity, the purpose of making this graph in the early stage is to count the number of COVID cases and deaths around the world and the ratio between them, so as to compare it with each country. Food nutrient ratios are linked to analyze the impact of nutrition on COVID.
-##Observation and Insight## 
+## Observation and Insight ##
 According to the scatter plot, in general, almost all countries have a COVID mortality rate below 10%. For some countries with extremely high mortality, such as Belgium(58% death ratio), according to the dataset of Food, the proportion of meat and fruit is far lower than that of countries with low mortality, so it seems that the reason behind this may be because insufficient intake of protein and vitamins leads to decreased immunity.
 
 
-##Chart 3 code
+## Chart 3 code ##
 ```{r}
 food_global_data <- Food_Supply_Quantity_kg_Data
 
@@ -91,11 +99,11 @@ obesity_deaths <- food_global_data %>%
 
 ggplot(obesity_deaths, aes(x=Obesity, fill = Deaths)) + geom_histogram()
 ```
-## Chart Purpose## 
-This histogram explores the relationship between the percentage of global obesity data and the percentages of deaths from COVID-19. Additionally, this chart visualizes the ratio of death percentages compared to the percentage of global obesity. 
+## Chart Purpose##
+This histogram explores the relationship between the percentage of global obesity data and the percentages of deaths from COVID-19. Additionally, this chart visualizes the ratio of death percentages compared to the percentage of global obesity.
 
-##Observation## 
-While analyzing the histogram, there seems to be distinct relationship between the obesity data and the COVID-19 related deaths. The increase in obesity appears to affect the increase in COVID-19 death data. 
+## Observation ##
+While analyzing the histogram, there seems to be distinct relationship between the obesity data and the COVID-19 related deaths. The increase in obesity appears to affect the increase in COVID-19 death data.
 
-##Insight##
-From these observations, we can see that the higher the obesity data is within a certain region or country, can increase how susceptible a individual is to COVID-19 contraction and death. 
+## Insight ##
+From these observations, we can see that the higher the obesity data is within a certain region or country, can increase how susceptible a individual is to COVID-19 contraction and death.
