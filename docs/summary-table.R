@@ -1,4 +1,4 @@
-# Date: February 16th, 2022
+# Date: February 18th, 2022
 # Author: Brendan Keane
 # Purpose: Summarize information from COVID-19 and world food data
 
@@ -6,6 +6,7 @@
 
 # Libraries used
 library("dplyr")
+library("knitr")
 
 # Loading global COVID data
 global_covid_data_origional <- read.csv("./data/jhu-covid19-2022-02-14.txt")
@@ -92,3 +93,23 @@ global_food_data_kg[global_food_data_kg$Country ==
 # Combining both of the data frames
 global_food_and_covid <- inner_join(global_covid_data, global_food_data_kg, 
                                    by = c("Country_Region" = "Country"))
+
+
+## Summary table ------
+# Saving the dataframe as a csv
+write.csv(global_food_and_covid,"./data/global_food_and_covid.csv", row.names = FALSE)
+
+# Creating a summary table from our full data frame
+simple_food_and_covid <- global_food_and_covid %>%
+  select(Country_Region, Population, country_cases, country_deaths, 
+         country_fatality_ratio, Obesity, Undernourished, Animal.Products, 
+         Vegetal.Products) %>%
+  rename("Country" = Country_Region, "Cases" = country_cases, 
+         "Deaths" = country_deaths, "Fatality Ratio (Deaths to Cases)" = country_fatality_ratio,
+         "Obesity (%)" = Obesity, "Malnourished (%)" = Undernourished,
+         "Animal Producs (kg)" = Animal.Products, 
+         "Vegetable Products (kg)" = Vegetal.Products) %>%
+  arrange(-Population) %>%
+  head(15)
+
+summary_table <- kable(simple_food_and_covid, format = "pipe", digits = 3)
