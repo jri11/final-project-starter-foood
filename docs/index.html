@@ -260,6 +260,8 @@ pre code {
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <p>Our data set included food consumption and COVID-19 statistics from countries representing people. In these data, we are able to analyze how diet relates to COVID-19 outcomes, and what that implies about population health. Countries combating COVID-19 have median mortality rate of 0.012 and a average mortality rate of 0.018. This indicates that our death rate distribution skews left. As for obesity, countries experience obesity at a median rate of 21.2% and an average rate of 18.7%. This obesity rate distribution skews right. For a better look at our data, here is a summary table consisting of food and COVID-19 data for the 15 largest countries:</p>
+<div id="aggregate-table" class="section level3">
+<h3>Aggregate Table</h3>
 <table>
 <colgroup>
 <col width="15%" />
@@ -455,6 +457,7 @@ pre code {
 </table>
 <p>These data reveal that populations with higher COVID-19 mortality rates tend to have higher obesity rates (&gt;20%). The exception to this rule is the United States which has a 37.3% obesity rate, and a 0.012 COVID-19 mortality ratio.</p>
 </div>
+</div>
 <div id="chart-1-code" class="section level2">
 <h2>Chart 1 code</h2>
 <pre class="r"><code>#Libraries used
@@ -486,6 +489,48 @@ food_supply_quantity_kg_data %&gt;%
 </div>
 <div id="chart-2-code" class="section level2">
 <h2>Chart 2 code</h2>
+<pre class="r"><code>library(&quot;plotly&quot;)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<pre class="r"><code>food_quantity &lt;- read.csv(&quot;../data/Food_Supply_Quantity_kg_Data.csv&quot;,stringsAsFactors = FALSE)
+Covid &lt;- read.csv(&quot;../data/jhu-covid19-2022-02-14.txt&quot;,stringsAsFactors = FALSE)
+covid_specific &lt;- Covid %&gt;%
+  mutate(deathratio=Deaths/Confirmed)%&gt;%
+  filter(
+    Confirmed&gt;Deaths,
+    Last_Update == &quot;2022-02-15 04:21:09&quot;
+  )
+
+case_deaths &lt;- plot_ly(
+  data = covid_specific,
+  x = ~Confirmed,
+  y = ~Deaths,
+  color =~deathratio,
+  size = ~Deaths/20,
+  type=&quot;scatter&quot;
+)
+
+case_deaths &lt;- case_deaths %&gt;%
+  layout(
+  title = &quot;Cases and Deaths condition around the world(recently updated)&quot;,
+  xaxis = list(title = &quot;The number of cases&quot;),
+  yaxis = list(title = &quot;The number of deaths &quot;)
+)
+
+case_deaths&lt;-ggplot(data = covid_specific) +
+  geom_point(mapping = aes(x = Confirmed, y = Deaths, color = deathratio ),position = &quot;jitter&quot;,alpha=0.3)+
+  geom_smooth(mapping = aes(x = Confirmed, y = Deaths, color = deathratio), se = FALSE)+
+  scale_x_log10()+
+  scale_y_log10()</code></pre>
 </div>
 <div id="chart-purpose" class="section level2">
 <h2>Chart Purpose</h2>

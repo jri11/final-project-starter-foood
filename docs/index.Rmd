@@ -223,39 +223,34 @@ With this observation, we can see that diets with a higher rate in sugar consump
 
 
 ## Chart 2 code ##
-```{r, warning=FALSE, message=FALSE,echo=FALSE}
+```{r}
+#load the package
+library(ggplot2)
+library(dplyr)
+library(leaflet)
 library("plotly")
 
-food_quantity <- read.csv("../data/Food_Supply_Quantity_kg_Data.csv",stringsAsFactors = FALSE)
-Covid <- read.csv("../data/jhu-covid19-2022-02-14.txt",stringsAsFactors = FALSE)
-covid_specific <- Covid %>%
-  mutate(deathratio=Deaths/Confirmed)%>%
-  filter(
-    Confirmed>Deaths,
-    Last_Update == "2022-02-15 04:21:09"
+#cases and deaths condition in US(scatter plot)
+food_and_covid <- read.csv("./data/global_food_and_covid.csv")
+covid_specific <- food_and_covid %>%
+  select(Country_Region, country_deaths, country_cases, country_fatality_ratio)
+
+chart2 <- plot_ly(
+  data = covid_specific, 
+  x = ~country_cases, 
+  y = ~country_deaths,
+  size = ~country_deaths,
+  type="scatter"
+) %>% layout(title = "COVID-19 Mortality Ratio", 
+             xaxis = list(range = c(log10(1000), log10(125000000)), title = "Cases", type = "log"), 
+             yaxis = list(title = "Deaths", type = "log")) %>%
+  add_trace(
+    text = ~Country_Region,
+    hoverinfo = c("text"),
+    showlegend = F
   )
 
-case_deaths<-ggplot(data = covid_specific) +
-  geom_point(mapping = aes(x = Confirmed, y = Deaths, color = deathratio ),position = "jitter",alpha=0.3)+
-  geom_smooth(mapping = aes(x = Confirmed, y = Deaths, color = deathratio), se = FALSE)+
-  scale_x_log10()+
-  scale_y_log10()
-
-case_deaths <- plot_ly(
-  data = covid_specific,
-  x = ~Confirmed,
-  y = ~Deaths,
-  color =~deathratio,
-  size = ~Deaths/20,
-  type="scatter"
-)
-
-case_deaths <- case_deaths %>%
-  layout(
-  title = "Cases and Deaths condition around the world(recently updated)",
-  xaxis = list(title = "The number of cases"),
-  yaxis = list(title = "The number of deaths ")
-)
+chart2
 ```
 ## Chart Purpose ##
 Considering that the nutritional ratio will have a direct impact on the COVID situation from the perspective of immunity, the purpose of making this graph in the early stage is to count the number of COVID cases and deaths around the world and the ratio between them, so as to compare it with each country. Food nutrient ratios are linked to analyze the impact of nutrition on COVID.
