@@ -226,17 +226,15 @@ With this observation, we can see that diets with a higher rate in sugar consump
 ## Chart 2 code ##
 <<<<<<< HEAD
 ```{r}
+
 #load the package
 library(ggplot2)
 library(dplyr)
 library(leaflet)
-=======
-```{r, warning=FALSE, message=FALSE,echo=TRUE}
->>>>>>> f7fbb30cabac0de30e3747d2770b736c2abbd9c0
 library("plotly")
 
 #cases and deaths condition in US(scatter plot)
-food_and_covid <- read.csv("./data/global_food_and_covid.csv")
+food_and_covid <- read.csv("../data/global_food_and_covid.csv")
 covid_specific <- food_and_covid %>%
   select(Country_Region, country_deaths, country_cases, country_fatality_ratio)
 
@@ -246,7 +244,6 @@ chart2 <- plot_ly(
   y = ~country_deaths,
   size = ~country_deaths,
   type="scatter"
-<<<<<<< HEAD
 ) %>% layout(title = "COVID-19 Mortality Ratio", 
              xaxis = list(range = c(log10(1000), log10(125000000)), title = "Cases", type = "log"), 
              yaxis = list(title = "Deaths", type = "log")) %>%
@@ -257,17 +254,6 @@ chart2 <- plot_ly(
   )
 
 chart2
-=======
-)
-
-case_deaths <- case_deaths %>%
-  layout(
-  title = "Cases and Deaths condition around the world(recently updated)",
-  xaxis = list(title = "The number of cases"),
-  yaxis = list(title = "The number of deaths ")
-)
-case_deaths
->>>>>>> f7fbb30cabac0de30e3747d2770b736c2abbd9c0
 ```
 ## Chart Purpose ##
 Considering that the nutritional ratio will have a direct impact on the COVID situation from the perspective of immunity, the purpose of making this graph in the early stage is to count the number of COVID cases and deaths around the world and the ratio between them, so as to compare it with each country. Food nutrient ratios are linked to analyze the impact of nutrition on COVID.
