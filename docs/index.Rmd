@@ -212,6 +212,7 @@ food_supply_quantity_kg_data %>%
   ggplot(., aes(x = Sugar...Sweeteners, fill = country_deaths)) +
   geom_density()
 ```
+
 ## Chart Purpose ##
 This density map explores the relationship between global sugar/ sweetener consumption and global Covid-19 deaths. This chart visualizes the ratio of death percentages pertaining to the percentage of sugar consumption
 
@@ -223,7 +224,7 @@ With this observation, we can see that diets with a higher rate in sugar consump
 
 
 ## Chart 2 code ##
-```{r, warning=FALSE, message=FALSE,echo=FALSE}
+```{r, warning=FALSE, message=FALSE,echo=TRUE}
 library("plotly")
 
 food_quantity <- read.csv("../data/Food_Supply_Quantity_kg_Data.csv",stringsAsFactors = FALSE)
@@ -256,15 +257,17 @@ case_deaths <- case_deaths %>%
   xaxis = list(title = "The number of cases"),
   yaxis = list(title = "The number of deaths ")
 )
+case_deaths
 ```
 ## Chart Purpose ##
 Considering that the nutritional ratio will have a direct impact on the COVID situation from the perspective of immunity, the purpose of making this graph in the early stage is to count the number of COVID cases and deaths around the world and the ratio between them, so as to compare it with each country. Food nutrient ratios are linked to analyze the impact of nutrition on COVID.
+
 ## Observation and Insight ##
 According to the scatter plot, in general, almost all countries have a COVID mortality rate below 10%. For some countries with extremely high mortality, such as Belgium(58% death ratio), according to the dataset of Food, the proportion of meat and fruit is far lower than that of countries with low mortality, so it seems that the reason behind this may be because insufficient intake of protein and vitamins leads to decreased immunity.
 
 
 ## Chart 3 code ##
-```{r}
+```{r, warning=FALSE, message=FALSE,echo=TRUE}
 food_global_data <- read.csv("../data/Food_Supply_Quantity_kg_Data.csv")
 
 obesity_deaths <- food_global_data %>%
@@ -272,6 +275,7 @@ obesity_deaths <- food_global_data %>%
 
 ggplot(obesity_deaths, aes(x=Obesity, fill = Deaths)) + geom_histogram()
 ```
+
 ## Chart Purpose##
 This histogram explores the relationship between the percentage of global obesity data and the percentages of deaths from COVID-19. Additionally, this chart visualizes the ratio of death percentages compared to the percentage of global obesity.
 
