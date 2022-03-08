@@ -3,12 +3,26 @@
 # Purpose: Server for INFO 201 final deliverable
 
 # Libraries
-library("shiny")
+library(shiny)
+library(knitr)
+library(kableExtra)
+library(htmltools)
+library(tidyverse)
+library(scales)
+library(ExPanDaR)
 
 # Source files
 source("../source/data_access.R")
 
 server <- function(input, output) {
+  
+  #Visualization 2 
+  #scatter plot 
+  df <- global_foodcovid_data
+  df <- df[, c("cs_id", "country_cases", "country_deaths", "Alcoholic.Beverages", "Last_Update", "Population")]
+  df <- df[complete.cases(df), ]
+  prepare_scatter_plot(df, "country_deaths", "Alcoholic.Beverages", color = "Last_Update", size = "Population", loess = 1)
+  
   
   # Visualization 4
   # Interactive map
