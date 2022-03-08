@@ -15,4 +15,5 @@ library("plotly")
 source("app_ui.R")      # UI
 source("app_server.R")  # Server
 
-shinyApp(ui = ui, server = server)
+# Shiny app 
+shinyApp(ui = ui, server = server)  
