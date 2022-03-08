@@ -4,20 +4,37 @@
 
 # Libraries
 library("shiny")
+library("leaflet")
+
+# Cereals...Excluding.Beer / country_fatality_ratio / Vegetal.Products
+# Animal.Products / Obesity / Animal.fats / Pulses / Sugar...Sweeteners
 
 # Controls
 sidepanel <- sidebarPanel(
-  h1("Test space")
+  selectInput(
+    inputId = "food_cat",
+    label = "Food Group",
+    choices = list("Vegetable Products" = "Vegetal.Products",
+                   "Animal Products" = "Animal.Products",
+                   "Animal Fats" = "Animal.fats",
+                   "Sugars and Sweeteners" = "Sugar...Sweeteners",
+                   "Legumes (Beans, Chickpeas, Lentils, etc)" = "Pulses",
+                   "Cereals" = "Cereals...Excluding.Beer"),
+    selected = "Vegetal.Products"
+  )
 )
 
 # Visualization
 mainpanel <- mainPanel(
-  h1("Changing space")
+  leafletOutput("foodMap"),
+  p(""),
+  p("COVID-19 mortality rate modeled in RED"),
+  p("Food group consumption per capita modeled in GREEN")
 )
 
 # UI for this tab
 vis4_tab <- tabPanel(
-  "Visualization 4",
+  "Food Map",
   sidebarLayout(
     sidepanel,
     mainpanel
