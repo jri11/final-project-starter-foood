@@ -8,7 +8,7 @@ library("shiny")
 # Intro tab
 intro_tab <- tabPanel(
   "Introduction",
-  h1("Introductary Page"),
+  h1("Food and COVID-19 Mortality"),
   p("Clearly introduces the purpose of the project (i.e., questions it seeks 
     to answer) and what datasets it will use to do so. Some visual flare (e.g., background image) is present."),
   p("(3pts) The purpose/importance of the project"),
