@@ -36,7 +36,7 @@ server <- function(input, output, session) {
   )
   
   
-  # food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
+  food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
   # covid_specific <- food_and_covid %>%
   #   select(Country_Region, country_deaths, country_cases, country_fatality_ratio)
   # food_and_covid_new <- food_and_covid%>%
@@ -101,6 +101,23 @@ server <- function(input, output, session) {
         stroke = FALSE
       )
   })
+  
+  # Visualization 2
+  output$veg_animal_covid <- renderPlot(
+    
+    ggplot(global_foodcovid_data) +
+      geom_point(mapping = aes(x = Animal.Products,
+                               y = Vegetal.Products, 
+                               size = global_food_df$country_fatality_ratio / 10)) +
+      geom_smooth(mapping = aes(x = global_foodcovid_data$Animal.Products, 
+                                y = global_foodcovid_data$Vegetal.Products,
+                                ))
+    
+    
+  )
+
+global_food_df <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
+View(global_food_df)
 }
 
   
