@@ -1,11 +1,8 @@
 # Date: March 7th, 2022
 # Author: Brendan Keane
 # Purpose: User interface for INFO 201 final deliverable
-<<<<<<< HEAD
-# setwd("/Users/jibson/Desktop/info201/final-project-starter-foood/source")
-=======
 
->>>>>>> ded6ddfd97395183c4a03102f9f1cfeac5a45aea
+# setwd("/Users/jibson/Desktop/info201/final-project-starter-foood/source")
 # Libraries
 library("leaflet")
 library("shiny")
