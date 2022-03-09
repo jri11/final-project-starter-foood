@@ -108,7 +108,7 @@ server <- function(input, output, session) {
     ggplot(global_foodcovid_data) +
       geom_point(mapping = aes(x = Animal.Products,
                                y = Vegetal.Products, 
-                               size = global_food_df$country_fatality_ratio / 10)) +
+                               size = global_foodcovid_data$country_fatality_ratio / 10)) +
       geom_smooth(mapping = aes(x = global_foodcovid_data$Animal.Products, 
                                 y = global_foodcovid_data$Vegetal.Products,
                                 ))
