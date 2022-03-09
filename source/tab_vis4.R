@@ -4,26 +4,39 @@
 
 # Libraries
 library("shiny")
+library("leaflet")
+
+# Cereals...Excluding.Beer / country_fatality_ratio / Vegetal.Products
+# Animal.Products / Obesity / Animal.fats / Pulses / Sugar...Sweeteners
+
+# Controls
+sidepanel <- sidebarPanel(
+  selectInput(
+    inputId = "food_cat",
+    label = "Food Group",
+    choices = list("Vegetable Products" = "Vegetal.Products",
+                   "Animal Products" = "Animal.Products",
+                   "Animal Fats" = "Animal.fats",
+                   "Sugars and Sweeteners" = "Sugar...Sweeteners",
+                   "Legumes (Beans, Chickpeas, Lentils, etc)" = "Pulses",
+                   "Cereals" = "Cereals...Excluding.Beer"),
+    selected = "Vegetal.Products"
+  )
+)
+
+# Visualization
+mainpanel <- mainPanel(
+  leafletOutput("foodMap"),
+  p(""),
+  p("COVID-19 mortality rate modeled in RED"),
+  p("Food group consumption per capita modeled in GREEN")
+)
 
 # UI for this tab
 vis4_tab <- tabPanel(
-  "Visualization 4",
-  h1("Interactive Page 4"),
-  p("Creates a well laid out page with a set of 1+ controls that configure a 
-    chart. Chart must be intentionally designed to reveal particular patterns in 
-    the data, and meet course standards of labeling // clarity."),
-  p("(2pts) A description of what the chart attempts to answer/understand"),
-  p("(4pts) Selected the appropriate chart type / graphical encoding based on 
-    the question of interest and the data type(s) of the features"),
-  p("(4pts) Appropriate labels/legends, depending on your chart type. Including, 
-  but not limited to: - X axis label (if there's an x axis) - Y axis label (if 
-  there's an y axis) - Title (if there's an ability to add a title -- e.g., not 
-  a map) - Legend for any encodings that are not immediately apparent"),
-  p("(2pts) Provides well-formatted and detailed information when hovering each 
-    mark on the chart"),
-  p("(2pts) for creating at least 1 widget with appropriate label"),
-  p("(1pt) for setting appropriate default value"),
-  p("(3pts) for the widget working (e.g., changing the desired output)"),
-  p("(2pts) for appropriate layout of controls and visualization (e.g., a 
-    sidebarLayout())")
+  "Food Map",
+  sidebarLayout(
+    sidepanel,
+    mainpanel
+  )
 )

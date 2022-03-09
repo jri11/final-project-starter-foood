@@ -7,17 +7,19 @@
 # Libraries used
 library("dplyr")
 library("knitr")
+library("caret")
+
 
 get_covid_data <- function() {
   # Loading global COVID data
-  global_covid_data <- read.csv("./data/jhu-covid19-2022-02-14.txt")
+  global_covid_data <- read.csv("../data/jhu-covid19-2022-02-14.txt")
   
   return(global_covid_data)
 }
 
 get_food_data <- function() {
   # Loading global food supply in kg
-  global_food_data <- read.csv("./data/Food_Supply_Quantity_kg_Data.csv")
+  global_food_data <- read.csv("../data/Food_Supply_Quantity_kg_Data.csv")
   
   return(global_food_data)
 }
@@ -152,3 +154,30 @@ get_foodcovid_summary <- function(full_data) {
 # Data frame and summary table to be used as reference through the project
 global_foodcovid_data <- get_foodcovid_data()
 global_foodcovid_summary <- get_foodcovid_summary(global_foodcovid_data)
+
+# Normalized values ----
+normalize_data <- function(full_data) {
+  
+  full_data <- full_data %>%
+    filter(Country_Region != "Yemen") %>%
+    filter(Country_Region != "Vanuatu")
+  
+  # Normalizing function for data. Brings values between 0 and 1
+  process <- preProcess(as.data.frame(full_data), method = c("range"))
+  norm_data <- predict(process, as.data.frame(full_data)) %>%
+    select(country_fatality_ratio, Obesity, Animal.Products, Vegetal.Products,
+           Animal.fats, Sugar...Sweeteners, Pulses, Cereals...Excluding.Beer) %>%
+    rename(Obesity.Norm = Obesity, fatality_ratio_norm = country_fatality_ratio)
+  
+  # Selecting countries and coordinates
+  geo_data <- full_data %>%
+    select(Country_Region, country_lat, country_long, Obesity, country_fatality_ratio) 
+  
+  # Joining normalized data
+  combo_data <- merge(geo_data, norm_data, by = "row.names", all = TRUE)
+
+}
+
+# Normalized, map graphable food and covid data frame
+norm_foodcovid_data <- normalize_data(global_foodcovid_data)
+

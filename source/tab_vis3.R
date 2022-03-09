@@ -1,5 +1,5 @@
-# Date: March 7th, 2022
-# Author: Brendan Keane
+# Date: March 8th, 2022
+# Author: Jerry Zhang
 # Purpose: Visualization tab for this user interface
 
 # Libraries
@@ -15,7 +15,7 @@ Country_Region <- food_and_covid_new$Country_Region
 
 # UI for this tab
 vis3_tab <- tabPanel(
-  "Visualization 3",
+  "COVID chart",
   h1("Interactive Page 3"),
   sidebarLayout(
     sidebarPanel(
@@ -24,7 +24,7 @@ vis3_tab <- tabPanel(
                   choices = list(
                     "Country"=Country_Region
                   ),
-                  selected = "United States of America"),
+                  selected = "Vanuatu"),
     ),
     mainPanel(
       plotlyOutput("chart2"),

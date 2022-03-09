@@ -17,24 +17,10 @@ Country_Region <- food_and_covid_new$Country_Region
 vis2_tab <- tabPanel(
   "Visualization 2",
   h1("Interactive Page 2"),
-  sidebarLayout(
-    sidebarPanel(
-      selectInput(inputId = "bar",
-                  label = "Country",
-                  choices = list(
-                    "Country"=Country_Region
-                    ),
-                  selected = "United States of America"),
-    ),
-    mainPanel(
-      plotlyOutput("chart2"),
-    )
-  ),
-  widths = c(2,12),
   p("Creates a well laid out page with a set of 1+ controls that configure a 
     #chart. Chart must be intentionally designed to reveal particular patterns in 
     #the data, and meet course standards of labeling // clarity."),
-  p("The purpose of this chart is to explore the relationship between the number of cases and deaths across countries and to derive their ratios. In addition, another aspect is to calculate the ratio between them and explore the relationship between the ratio and the ratio of nutritious food intake."),
+  p(""),
   p("(4pts) Selected the appropriate chart type / graphical encoding based on 
    the question of interest and the data type(s) of the features"),
   p("(4pts) Appropriate labels/legends, depending on your chart type. Including, 
