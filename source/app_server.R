@@ -18,51 +18,34 @@ library(ExPanDaR)
 
 # Source files
 source("../source/data_access.R")
-
-
-# Prepares for the server
-food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
-covid_specific <- food_and_covid %>%
-  select(Country_Region, country_deaths, country_cases, country_fatality_ratio)
-food_and_covid_new <- food_and_covid%>%
-  rename("Cases" = "country_cases",
-         "Deaths" = "country_deaths")
-Country_Region <- food_and_covid_new$Country_Region
-
-# Server
-    
-    
-    
-    
-    
-    
-    
   
-  #Visualization 2 
-  #scatter plot 
-  df <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
-  df <- df[, c("country_cases", "country_deaths", "Alcoholic.Beverages", "Last_Update", "Population")]
-  df <- df[complete.cases(df), ]
-  output$chart2 <- renderPlotly({
-    prepare_scatter_plot(df, "country_deaths", "Alcoholic.Beverages", color = "Last_Update", size = "Population", loess = 1)
-  })
-  
-  #Visualization 3
-  #bar chart
-  # Prepares for the server
 server <- function(input, output) {
-  food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
-  covid_specific <- food_and_covid %>%
-    select(Country_Region, country_deaths, country_cases, country_fatality_ratio)
-  food_and_covid_new <- food_and_covid%>%
-    rename("Cases" = "country_cases",
-           "Deaths" = "country_deaths")
-  Country_Region <- food_and_covid_new$Country_Region
-  food_and_covid_new_1<-  food_and_covid_new%>%
-    group_by(Country_Region)%>%
-    summarise(Country_Region,Cases,Deaths) %>%
-    slice_max(order_by =Cases , n = 5)%>%
-    pivot_longer(c(Cases,Deaths), names_to = "type", values_to = "population")
+  
+  # Visualization 1
+  output$lethal_foods <- renderPlot(
+    
+    ggplot(global_foodcovid_data) +
+      geom_point(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
+                               y = global_foodcovid_data$Alcoholic.Beverages, 
+                               size = global_foodcovid_data$Population / 100000)) +
+      geom_smooth(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
+                                y = global_foodcovid_data$Alcoholic.Beverages))
+    
+  )
+  
+  
+  # food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
+  # covid_specific <- food_and_covid %>%
+  #   select(Country_Region, country_deaths, country_cases, country_fatality_ratio)
+  # food_and_covid_new <- food_and_covid%>%
+  #   rename("Cases" = "country_cases",
+  #          "Deaths" = "country_deaths")
+  # Country_Region <- food_and_covid_new$Country_Region
+  # food_and_covid_new_1<-  food_and_covid_new%>%
+  #   group_by(Country_Region)%>%
+  #   summarise(Country_Region,Cases,Deaths) %>%
+  #   slice_max(order_by =Cases , n = 5)%>%
+  #   pivot_longer(c(Cases,Deaths), names_to = "type", values_to = "population")
   
   # Server
     data<-reactive({
@@ -76,9 +59,6 @@ server <- function(input, output) {
         geom_col(position = "dodge",width=0.3)+
         labs(x="Country", y="the number of people",title = "Covid Cases and Deaths in each country")
     })
-  
-  
-  
   
   # Visualization 4
   # Interactive map

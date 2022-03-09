@@ -6,9 +6,6 @@
 library("shiny")
 library("leaflet")
 
-# Cereals...Excluding.Beer / country_fatality_ratio / Vegetal.Products
-# Animal.Products / Obesity / Animal.fats / Pulses / Sugar...Sweeteners
-
 # Controls
 sidepanel <- sidebarPanel(
   selectInput(

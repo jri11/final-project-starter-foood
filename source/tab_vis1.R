@@ -8,6 +8,7 @@ library("shiny")
 # UI for this tab
 vis1_tab <- tabPanel(
   "Visualization 1",
+  plotOutput("lethal_foods"),
   h1("Interactive Page 1"),
   p("Creates a well laid out page with a set of 1+ controls that configure a 
     chart. Chart must be intentionally designed to reveal particular patterns in 

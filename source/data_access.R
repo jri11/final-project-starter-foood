@@ -180,4 +180,3 @@ normalize_data <- function(full_data) {
 
 # Normalized, map graphable food and covid data frame
 norm_foodcovid_data <- normalize_data(global_foodcovid_data)
-
