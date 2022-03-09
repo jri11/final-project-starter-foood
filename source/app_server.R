@@ -10,16 +10,14 @@ library(dplyr)
 library(leaflet)
 library("plotly")
 library(knitr)
-library(kableExtra)
 library(htmltools)
 library(tidyverse)
-library(scales)
 library(ExPanDaR)
 
 # Source files
 source("../source/data_access.R")
   
-server <- function(input, output) {
+server <- function(input, output, session) {
   
   # Visualization 1
   output$lethal_foods <- renderPlot(
@@ -29,7 +27,11 @@ server <- function(input, output) {
                                y = global_foodcovid_data$Alcoholic.Beverages, 
                                size = global_foodcovid_data$Population / 100000)) +
       geom_smooth(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
-                                y = global_foodcovid_data$Alcoholic.Beverages))
+                                y = global_foodcovid_data$Alcoholic.Beverages,
+                                title = "Alcohol in relation to COVID-19",
+                                xlab = "Fatality Ratio",
+                                ylab = "Alcoholic Bev. Consumed"))
+                                    
     
   )
   
