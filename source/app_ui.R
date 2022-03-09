@@ -1,24 +1,24 @@
 # Date: March 7th, 2022
 # Author: Brendan Keane
 # Purpose: User interface for INFO 201 final deliverable
-<<<<<<< HEAD
-# setwd("/Users/jibson/Desktop/info201/final-project-starter-foood/source")
-=======
 
->>>>>>> ded6ddfd97395183c4a03102f9f1cfeac5a45aea
 # Libraries
-library("leaflet")
-library("shiny")
+library("rsconnect")
+library("dplyr")
+library("rgeos")
+library("rworldmap")
+library("tidyr")
+library("ggplot2")
 library("plotly")
 library("shinythemes")
 
 # Source Files
-source("../source/tab_intro.R")
-source("../source/tab_vis1.R")
-source("../source/tab_vis2.R")
-source("../source/tab_vis3.R")
-source("../source/tab_vis4.R")
-source("../source/tab_report.R")
+source("tab_intro.R")
+source("tab_vis1.R")
+source("tab_vis2.R")
+source("tab_vis3.R")
+source("tab_vis4.R")
+source("tab_report.R")
 
 # Full ui
 ui <- fluidPage(
