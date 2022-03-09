@@ -2,6 +2,7 @@
 # Author: Brendan Keane
 # Purpose: User interface for INFO 201 final deliverable
 
+<<<<<<< HEAD
 # Libraries
 library("rsconnect")
 library("dplyr")
@@ -9,6 +10,11 @@ library("rgeos")
 library("rworldmap")
 library("tidyr")
 library("ggplot2")
+
+# Libraries
+
+library("leaflet")
+library("shiny")
 library("plotly")
 library("shinythemes")
 
@@ -33,4 +39,3 @@ ui <- fluidPage(
     report_tab
   )
 )
-
