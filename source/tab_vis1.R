@@ -8,9 +8,9 @@ library("shiny")
 # UI for this tab
 vis1_tab <- tabPanel(
   "Visualization 1",
-  plotOutput("lethal_foods"),
   h1("Interactive Page 1"),
-  h4("Alcohol is generally to be consumed in moderation, and copious amount is
+  plotOutput("lethal_foods"),
+  p("Alcohol is generally to be consumed in moderation, and copious amount is
      not healthy for anyone, however since alcohol has this unhealthy reputation,
      it would be easy to assume that people who consume more alcohol are more
      susceptible to COVID-19 exposure. Contradictaory to this misconception,
