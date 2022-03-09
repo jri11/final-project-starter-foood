@@ -41,11 +41,11 @@ server <- function(input, output) {
   #   rename("Cases" = "country_cases",
   #          "Deaths" = "country_deaths")
   # Country_Region <- food_and_covid_new$Country_Region
-  # food_and_covid_new_1<-  food_and_covid_new%>%
-  #   group_by(Country_Region)%>%
-  #   summarise(Country_Region,Cases,Deaths) %>%
-  #   slice_max(order_by =Cases , n = 5)%>%
-  #   pivot_longer(c(Cases,Deaths), names_to = "type", values_to = "population")
+  food_and_covid_new_1<-  food_and_covid_new%>%
+     group_by(Country_Region)%>%
+     summarise(Country_Region,Cases,Deaths) %>%
+     slice_max(order_by =Cases , n = 5)%>%
+     pivot_longer(c(Cases,Deaths), names_to = "type", values_to = "population")
   
   # Server
   # Visualization 3
