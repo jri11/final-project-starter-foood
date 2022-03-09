@@ -1,11 +1,16 @@
 # Date: March 7th, 2022
 # Author: Brendan Keane
 # Purpose: User interface for INFO 201 final deliverable
+<<<<<<< HEAD
 # setwd("/Users/jibson/Desktop/info201/final-project-starter-foood/source")
+=======
+
+>>>>>>> ded6ddfd97395183c4a03102f9f1cfeac5a45aea
 # Libraries
 library("leaflet")
 library("shiny")
 library("plotly")
+library("shinythemes")
 
 # Source Files
 source("../source/tab_intro.R")
@@ -17,6 +22,7 @@ source("../source/tab_report.R")
 
 # Full ui
 ui <- fluidPage(
+  theme = shinytheme("cyborg"),
   navbarPage(
     "Dietary Health and COVID Mortality",
     intro_tab,

@@ -25,12 +25,12 @@ server <- function(input, output, session) {
     ggplot(global_foodcovid_data) +
       geom_point(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
                                y = global_foodcovid_data$Alcoholic.Beverages, 
-                               size = global_foodcovid_data$Population / 100000)) +
-      geom_smooth(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
-                                y = global_foodcovid_data$Alcoholic.Beverages,
-                                title = "Alcohol in relation to COVID-19",
-                                xlab = "Fatality Ratio",
-                                ylab = "Alcoholic Bev. Consumed"))
+                               size = Population)) +
+      #geom_smooth(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
+                               # y = global_foodcovid_data$Alcoholic.Beverages,
+      labs(title = "Alcohol in relation to COVID-19",
+                                x = "Fatality Ratio",
+                                y = "Alcoholic Bev. Consumed")
                                     
     
   )
