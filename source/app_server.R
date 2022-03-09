@@ -60,18 +60,23 @@ server <- function(input, output) {
         labs(x="Country", y="the number of people",title = "Covid Cases and Deaths in each country")
     })
   
-  # Visualization 4
-  # Interactive map
+    
+  # Visualization 4 - Interactive map
   output$foodMap <- renderLeaflet({
     
+    # Renaming the changing variable to the standard name "rad"
+    # This allows me to easily reference a variable based on an input
+    # While there might be an easier way, I couldn't figure it out
     factor <- input$food_cat
-    
     map_vis <- norm_foodcovid_data %>%
       rename(rad = factor)
     
+    # Creating leaflet map
     leaflet() %>%
       addProviderTiles("CartoDB.Positron") %>%
       setView(lng = 0, lat = 20, zoom = 2) %>%
+      
+      # Circles for catagorical variable, marked in green
       addCircleMarkers(
         lat = map_vis$country_lat,
         lng = map_vis$country_long, 
@@ -81,6 +86,8 @@ server <- function(input, output) {
         opacity = 1,
         stroke = FALSE
       ) %>%
+      
+      # Circles for fatality ratio, marked in red
       addCircleMarkers(
         lat = map_vis$country_lat,
         lng = map_vis$country_long, 
