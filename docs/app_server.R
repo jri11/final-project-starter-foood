@@ -18,7 +18,7 @@ server <- function(input, output) {
   
   #Visualization 2 
   #scatter plot 
-  df <- global_foodcovid_data
+  df <- read.csv(".\\final-project-starter-foood\\data\\global_food_and_covid.csv")
   df <- df[, c("cs_id", "country_cases", "country_deaths", "Alcoholic.Beverages", "Last_Update", "Population")]
   df <- df[complete.cases(df), ]
   prepare_scatter_plot(df, "country_deaths", "Alcoholic.Beverages", color = "Last_Update", size = "Population", loess = 1)
