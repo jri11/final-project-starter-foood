@@ -48,6 +48,7 @@ server <- function(input, output) {
   #   pivot_longer(c(Cases,Deaths), names_to = "type", values_to = "population")
   
   # Server
+  # Visualization 3
     data<-reactive({
       food_and_covid_new_1[food_and_covid_new_1$Country_Region == input$bar,]
     })
