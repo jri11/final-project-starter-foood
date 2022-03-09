@@ -9,8 +9,12 @@ library("shiny")
 intro_tab <- tabPanel(
   "Introduction",
   h1("Introductary Page"),
-  p("Clearly introduces the purpose of the project (i.e., questions it seeks 
-    to answer) and what datasets it will use to do so. Some visual flare (e.g., background image) is present."),
-  p("(3pts) The purpose/importance of the project"),
-  p("(2pts) Page includes additional (relevant) visual flare beyond the summary paragraph")
+  h4("Within this data analysis of COVID-19 and macronutrient consumption, we can 
+     explore the effects of food on our immune system and susceptibility to viruses.
+     Through viewing the relationship of COVID-19 and food groups like dairy, for 
+     example, we can easily see patterns emerge and adjust our own diets to 
+     contribute to a helatheir society free of COVID-19. This analysis seeks to 
+     visualize and comminicate where exactly in our lives we can take small steps 
+     towards eradicating COVID-19 and improving our immunity.")
 )
+
