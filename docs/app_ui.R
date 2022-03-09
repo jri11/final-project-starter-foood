@@ -1,7 +1,7 @@
 # Date: March 7th, 2022
 # Author: Brendan Keane
 # Purpose: User interface for INFO 201 final deliverable
-
+setwd("/Users/jibson/Desktop/info201/final-project-starter-foood/source")
 # Libraries
 library("leaflet")
 library("shiny")
@@ -27,3 +27,4 @@ ui <- fluidPage(
     report_tab
   )
 )
+

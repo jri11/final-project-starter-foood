@@ -1,4 +1,4 @@
-
+setwd("/Users/jibson/Desktop/info201/final-project-starter-foood")
 #load the package
 library(ggplot2)
 library(dplyr)
