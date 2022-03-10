@@ -4,6 +4,9 @@
 
 # Libraries
 library("shiny")
+library("dplyr")
+
+food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
 
 # UI for this tab
 vis1_tab <- tabPanel(
@@ -18,6 +21,24 @@ vis1_tab <- tabPanel(
      In addition, It appears as though even if the alcoholic beverage consumption
      is over fifteen, there is no correleation with the fatality ratio. This
      does not mean that alcohol actually helps with the immune system avioding 
-     COVID, but it does not have any clear data/patterns that it hurts either.")
+     COVID, but it does not have any clear data/patterns that it hurts either.
+     The data also shows other things that could be included in alcohol such as 
+     sugars and stimulants."),
+  
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "bar",
+                  label = "Category",
+                  choices = list(
+                    "Alcoholic Beverages"= food_and_covid$Alcoholic.Beverages,
+                    "Stimulants" = food_and_covid$Stimulants,
+                    "Sugars and Sweetners" = food_and_covid$Sugars_Sweeteners,
+                  ),
+                  selected = "Alcoholic Beverages")
+    ),
+    mainPanel(
+      plotlyOutput("chart1"),
+    )
 
+)
 )
