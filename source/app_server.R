@@ -100,16 +100,15 @@ server <- function(input, output, session) {
   })
   
   # Visualization 2
-  output$veg_animal_covid <- renderPlot(
-    
-    ggplot(global_foodcovid_data) +
-      geom_point(mapping = aes(x = Animal.Products,
-                               y = Vegetal.Products, 
-                               size = global_foodcovid_data$country_fatality_ratio / 10)) +
-      geom_smooth(mapping = aes(x = global_foodcovid_data$Animal.Products, 
-                                y = global_foodcovid_data$Vegetal.Products,
-                                ))
-  )
+  output$chart1 <- renderPlotly({
+    plot <-  global_foodcovid_data %>%
+      ggplot() +
+      geom_point(aes(x = country_deaths, y = .data[[input$x_var]]))
+    plot
+  })
+  
+  
 }
+
 
   
