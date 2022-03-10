@@ -2,7 +2,6 @@
 # Author: Brendan Keane
 # Purpose: User interface for INFO 201 final deliverable
 
-<<<<<<< HEAD
 # Libraries
 library("rsconnect")
 library("dplyr")
