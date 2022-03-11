@@ -12,26 +12,19 @@ library("plotly")
 library(knitr)
 library(htmltools)
 library(tidyverse)
-library(ExPanDaR)
 
 # Source files
 source("data_access.R")
   
-server <- function(input, output, session) {
+server <- function(input, output) {
   
   # Visualization 1
-  output$lethal_foods <- renderPlot(
-    
-    ggplot(global_foodcovid_data) +
-      geom_point(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
-                               y = global_foodcovid_data$Alcoholic.Beverages, 
-                               size = Population)) +
-      geom_smooth(mapping = aes(x = global_foodcovid_data$country_fatality_ratio, 
-                                y = global_foodcovid_data$Alcoholic.Beverages)) +
-      labs(title = "Alcohol in relation to COVID-19",
-                                x = "Fatality Ratio",
-                                y = "Alcoholic Bev. Consumed")
-  )
+  
+  df <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
+  ret <- prepare_correlation_graph(df[, c(2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 
+                                          15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 
+                                          25, 26, 27, 28, 29, 30, 31, 32, 34)])
+    }
     
   food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/final-project-starter-foood/main/data/global_food_and_covid.csv")
   # covid_specific <- food_and_covid %>%
@@ -107,8 +100,7 @@ server <- function(input, output, session) {
     plot
   })
   
-  
-}
+
 
 
   

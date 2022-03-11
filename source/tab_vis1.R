@@ -11,7 +11,7 @@ food_and_covid <- read.csv("https://raw.githubusercontent.com/info-201a-wi22/fin
 # UI for this tab
 vis1_tab <- tabPanel(
   "Visualization 1",
-  h1("Interactive Page 1"),
+  h1("Correlation between Alcoholic beverages and COVID-19"),
   plotOutput("lethal_foods"),
   p("Alcohol is generally to be consumed in moderation, and copious amount is
      not healthy for anyone, however since alcohol has this unhealthy reputation,
@@ -24,21 +24,21 @@ vis1_tab <- tabPanel(
      COVID, but it does not have any clear data/patterns that it hurts either.
      The data also shows other things that could be included in alcohol such as 
      sugars and stimulants."),
-  
-  sidebarLayout(
-    sidebarPanel(
-      selectInput(inputId = "bar",
-                  label = "Category",
-                  choices = list(
-                    "Alcoholic Beverages"= food_and_covid$Alcoholic.Beverages,
-                    "Stimulants" = food_and_covid$Stimulants,
-                    "Sugars and Sweetners" = food_and_covid$Sugars_Sweeteners,
-                  ),
-                  selected = "Alcoholic Beverages")
-    ),
-    mainPanel(
-      plotlyOutput("chart1"),
-    )
 
-)
+  
+  shinyUI(fluidPage(
+    sidebarLayout(
+      sidebarPanel(
+        helpText("Plots that show correlation between Alcoholic beverages and
+                 the global COVID-19 fatality ratio"),
+        
+        selectInput("var",
+                    label = "Choose Alcohol or stimulants",
+                    choices = c("Alcohol"=1, "Stimulants"=2),
+                    selected = 1)
+      ),
+      
+      mainPanel(plotOutput('AlcoholPlot'))
+    )
+  ))
 )
